@@ -9,8 +9,9 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path={'/'} element={<Tracker />}></Route>
-        <Route path={'/add-meal'} element={<AddMeal />}></Route>
+        <Route path={'/'} element={<Tracker/>}></Route>
+        <Route path={'/add-meal'} element={<AddMeal/>}></Route>
+        <Route path={`/meals/:id/edit`} element={<AddMeal/>}></Route>
       </Routes>
     </Layout>
   );

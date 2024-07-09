@@ -4,6 +4,7 @@ import './AddMeal.css';
 import {useNavigate, useParams} from 'react-router-dom';
 import axiosApi from '../../axiosApi';
 import ButtonSpinner from '../../components/ButtonSpinner/ButtonSpinner';
+import {toast} from 'react-toastify';
 
 const AddMeal = () => {
   const [mealMutation, setMealMutation] = useState<MealApi>({
@@ -45,9 +46,13 @@ const AddMeal = () => {
     try {
       if (id !== undefined) {
         await axiosApi.put(`/meals/${id}.json`, meal);
+        toast.success('Meal successfully edited!', {theme: 'dark'});
       } else {
         await axiosApi.post('/meals.json', meal);
+        toast.success('Meal successfully created!', {theme: 'dark'});
       }
+    } catch (e) {
+      toast.error('Something went wrong!', {theme: 'dark'});
     } finally {
       setIsLoading(false);
       !id && navigate('/');

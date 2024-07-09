@@ -4,6 +4,7 @@ import {Meal} from '../../../types';
 import './MealsItem.css';
 import axiosApi from '../../../axiosApi';
 import ButtonSpinner from '../../ButtonSpinner/ButtonSpinner';
+import {toast} from 'react-toastify';
 
 interface Props {
   meal: Meal;
@@ -19,7 +20,7 @@ const MealsItem: React.FC<Props> = ({meal, reFetchMeals}) => {
       await axiosApi.delete(`/meals/${meal.id}.json`);
     } finally {
       setIsDeleting(false);
-      alert('Meal deleted!');
+      toast.success('Meal deleted!', {theme: 'dark'});
       reFetchMeals();
     }
   };
